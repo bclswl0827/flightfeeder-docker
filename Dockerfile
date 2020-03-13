@@ -1,4 +1,4 @@
-FROM raspbian/jessie:latest
+FROM arm32v7/debian:jessie-slim
 ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
 ARG DEBIAN_FRONTEND=noninteractive
 RUN rm -rf /home/* \
