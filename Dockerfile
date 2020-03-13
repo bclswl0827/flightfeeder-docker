@@ -17,4 +17,6 @@ RUN echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 ADD configure.sh /configure.sh
 RUN chmod +x /configure.sh
 RUN bash /configure.sh
+RUN /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json >/dev/null 2>&1 &
+RUN /usr/share/dump1090-fa/start-dump1090-fa --write-json %t/dump1090-fa --quiet >/dev/null 2>&1 &
 EXPOSE 22 80
