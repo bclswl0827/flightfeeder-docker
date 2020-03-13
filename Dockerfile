@@ -17,6 +17,6 @@ RUN echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 ADD configure.sh /configure.sh
 RUN chmod +x /configure.sh
 RUN bash /configure.sh
-CMD lighty-enable-mod dump1090-fa
-CMD service lighttpd force-reload
+#CMD lighty-enable-mod dump1090-fa
+#CMD service lighttpd force-reload
 EXPOSE 22 80
