@@ -13,7 +13,6 @@ RUN apt-get update && apt-get -y install \
         sudo \
         beast-splitter \
         dump1090-fa
-RUN service ssh start
 ADD configure.sh /configure.sh
 RUN chmod +x /configure.sh
 CMD /configure.sh
