@@ -16,10 +16,7 @@ RUN cd /tmp/src/beast-splitter
 
 FROM raspbian/stretch
 ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
-COPY --from=builder /usr/bin/v2ray/v2ray /usr/bin/v2ray/
-COPY --from=builder /usr/bin/v2ray/v2ctl /usr/bin/v2ray/
-COPY --from=builder /usr/bin/v2ray/geoip.dat /usr/bin/v2ray/
-COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
+COPY --from=builder /tmp/src/*.deb /tmp/*.deb
 RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
  && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
  && apt-get update && apt-get install -y dirmngr \
