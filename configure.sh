@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 cat > /etc/default/beast-splitter << EOF
 ENABLED=yes
