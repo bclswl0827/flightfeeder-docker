@@ -20,9 +20,7 @@ COPY --from=builder /tmp/src/beast-splitter_3.8.0_armhf.deb /tmp/beast-splitter_
 COPY --from=builder /tmp/src/dump1090-fa_3.8.0_armhf.deb /tmp/dump1090-fa_3.8.0_armhf.deb
 RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
  && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
- && apt-get update && apt-get install -y dirmngr \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF0F382A1A7B6500 \
+ && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010 \
  && apt-get update && apt-get install -y lighttpd libfam0 mime-support spawn-fcgi \
  && dpkg --install /tmp/beast-splitter_3.8.0_armhf.deb \
  && dpkg --install /tmp/dump1090-fa_3.8.0_armhf.deb \
