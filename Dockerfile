@@ -23,7 +23,7 @@ COPY --from=builder /tmp/src/dump1090_3.8.0_all.deb /tmp/dump1090_3.8.0_all.deb
 RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
  && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010 \
- && apt-get update && apt-get install -y lighttpd libfam0 mime-support spawn-fcgi \
+ && apt-get update && apt-get install -y --allow-unauthenticated lighttpd libfam0 mime-support spawn-fcgi \
  && dpkg --install /tmp/beast-splitter_3.8.0_armhf.deb \
  && dpkg --install /tmp/dump1090-fa_3.8.0_armhf.deb \
  && dpkg --install /tmp/dump1090_3.8.0_all.deb \
