@@ -4,6 +4,7 @@ ENABLED="yes"
 INPUT_OPTIONS="--serial /dev/beast --fixed-baud 1000000"
 OUTPUT_OPTIONS="--listen 30005:R --connect localhost:30104:R"
 EOF
+
 cat > /etc/default/dump1090-fa << EOF
 ENABLED="yes"
 DECODER_OPTIONS=" --lat $LAT --lon $LON --max-range 360"
@@ -11,3 +12,8 @@ NET_OPTIONS="--net --net-heartbeat 60 --net-ro-size 1000 --net-ro-interval 1 --n
 JSON_OPTIONS="--json-location-accuracy 2"
 RECEIVER_OPTIONS="--net-only --net-bo-port 0 --fix"
 EOF
+
+service beast-splitter restart
+service dump1090-fa restart
+lighty-enable-mod dump1090-fa
+service lighttpd force-reload
