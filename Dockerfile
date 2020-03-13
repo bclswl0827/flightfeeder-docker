@@ -23,7 +23,7 @@ RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF0F382A1A7B6500 \
  && apt-get update \
- && dpkg -i /tmp/src/
+ && dpkg -i /tmp/src/*.deb
 RUN useradd -m meow -d /home/meow -s /bin/bash \
  && echo "meow:$PASSWORD" | chpasswd \
  && echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
