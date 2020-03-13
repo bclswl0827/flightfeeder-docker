@@ -6,7 +6,7 @@ RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF0F382A1A7B6500 \
  && apt-get update && apt-get install -y git build-essential debhelper librtlsdr-dev pkg-config dh-systemd libncurses5-dev libbladerf-dev libboost-system-dev libboost-program-options-dev libboost-regex-dev
-RUN echo "140.82.114.3 github.com" >> /etc/hosts \
+RUN echo "13.250.177.223 github.com" >> /etc/hosts \
  && git clone https://github.com/bclswl0827/dump1090 /tmp/src/dump1090 \
  && git clone https://github.com/bclswl0827/beast-splitter /tmp/src/beast-splitter
 RUN cd /tmp/src/dump1090 \
