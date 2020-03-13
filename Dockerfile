@@ -23,7 +23,7 @@ RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc
  && apt-get update && apt-get install -y dirmngr \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF0F382A1A7B6500 \
- && apt-get update && apt-get install -y lighttpd libfam0 mime-support spawn-fcgi \
+ && apt-get update && apt-get install -y bladerf lighttpd libfam0 mime-support spawn-fcgi \
  && dpkg --install /tmp/beast-splitter_3.8.0_armhf.deb \
  && dpkg --install /tmp/dump1090-fa_3.8.0_armhf.deb \
  && dpkg --install /tmp/dump1090_3.8.0_all.deb
