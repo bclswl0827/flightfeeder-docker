@@ -10,9 +10,9 @@ RUN echo "13.250.177.223 github.com" >> /etc/hosts \
  && git clone https://github.com/bclswl0827/dump1090 /tmp/src/dump1090 \
  && git clone https://github.com/bclswl0827/beast-splitter /tmp/src/beast-splitter
 RUN cd /tmp/src/dump1090 \
- && dpkg-buildpackage -b
+ && dpkg-buildpackage -b --no-sign
 RUN cd /tmp/src/beast-splitter
- && dpkg-buildpackage -b
+ && dpkg-buildpackage -b --no-sign
 
 FROM raspbian/stretch
 ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
