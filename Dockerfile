@@ -1,6 +1,8 @@
+FROM arm32v7/debian:jessie-slim as builder
+ARG DEBIAN_FRONTEND=noninteractive
+
 FROM arm32v7/debian:jessie-slim
 ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
-ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B931BB28DE85F0DD \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 9165938D90FDDD2E \
  && echo "deb http://flightaware.a1.workers.dev/mirror/raspbian/raspbian/ jessie main contrib non-free firmware" > /etc/apt/sources.list \
