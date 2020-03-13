@@ -16,5 +16,5 @@ RUN apt-get update && apt-get -y install \
 RUN service ssh start
 ADD configure.sh /configure.sh
 RUN chmod +x /configure.sh
-ENTRYPOINT /configure.sh
+CMD /configure.sh
 EXPOSE 22 80
