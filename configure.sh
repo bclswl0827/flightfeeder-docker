@@ -11,5 +11,3 @@ NET_OPTIONS="--net --net-heartbeat 60 --net-ro-size 1000 --net-ro-interval 1 --n
 JSON_OPTIONS="--json-location-accuracy 2"
 RECEIVER_OPTIONS="--net-only --net-bo-port 0 --fix"
 EOF
-systemctl restart beast-splitter
-systemctl restart dump1090-fa
