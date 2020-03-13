@@ -15,6 +15,7 @@ RUN cd /tmp/src/beast-splitter \
  && dpkg-buildpackage -b --no-sign
 
 FROM raspbian/jessie:latest
+ARG DEBIAN_FRONTEND=noninteractive
 ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
 COPY --from=builder /tmp/src/beast-splitter_3.8.0_armhf.deb /tmp/beast-splitter_3.8.0_armhf.deb
 COPY --from=builder /tmp/src/dump1090-fa_3.8.0_armhf.deb /tmp/dump1090-fa_3.8.0_armhf.deb
