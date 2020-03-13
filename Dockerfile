@@ -16,4 +16,9 @@ RUN apt-get update && apt-get -y install \
 ADD configure.sh /configure.sh
 RUN chmod +x /configure.sh
 CMD /configure.sh
+RUN service ssh start \
+ && service beast-splitter start \
+ && service dump1090-fa start \
+ && lighty-enable-mod dump1090-fa \
+ && service lighttpd force-reload
 EXPOSE 22 80
