@@ -26,7 +26,9 @@ RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc
  && apt-get update && apt-get install -y lighttpd libfam0 mime-support spawn-fcgi \
  && dpkg --install /tmp/beast-splitter_3.8.0_armhf.deb \
  && dpkg --install /tmp/dump1090-fa_3.8.0_armhf.deb \
- && dpkg --install /tmp/dump1090_3.8.0_all.deb
+ && dpkg --install /tmp/dump1090_3.8.0_all.deb \
+ && sed -i "s/90.0/$LAT/g" /etc/default/dump1090-fa \
+ && sed -i "s/0.0/$LON/g" /etc/default/dump1090-fa
 RUN useradd -m meow -d /home/meow -s /bin/bash \
  && echo "meow:$PASSWORD" | chpasswd \
  && echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
