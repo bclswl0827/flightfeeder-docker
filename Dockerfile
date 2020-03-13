@@ -7,7 +7,7 @@ RUN rm -rf /home/* \
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B931BB28DE85F0DD \
  && echo "deb http://flightaware.a1.workers.dev/mirror/raspbian/raspbian/ jessie main contrib non-free firmware" > /etc/apt/sources.list \
  && echo "deb http://flightaware.a1.workers.dev/adsb/flightfeeder/files/packages jessie flightfeeder" > /etc/apt/sources.list.d/flightfeeder-jessie.list
-RUN apt update && apt-get -y install \
+RUN apt-get update && apt-get -y install \
         openssh-server \
         sudo \
         beast-splitter \
