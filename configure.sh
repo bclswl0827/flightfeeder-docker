@@ -1,3 +1,4 @@
+#!/bin/sh
 cat > /etc/default/beast-splitter << EOF
 ENABLED=yes
 INPUT_OPTIONS="--serial /dev/beast --fixed-baud 1000000 "
