@@ -15,4 +15,4 @@ EOF
 service beast-splitter start
 service dump1090-fa start
 lighty-enable-mod dump1090-fa
-/etc/init.d/lighttpd force-reload
+service lighttpd force-reload
