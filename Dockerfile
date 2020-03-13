@@ -1,6 +1,6 @@
 FROM raspbian/stretch as builder
 ARG DEBIAN_FRONTEND=noninteractive
-RUN sed -i "s//mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
+RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
  && apt-get update && apt-get install -y git build-essential debhelper librtlsdr-dev pkg-config dh-systemd libncurses5-dev libbladerf-dev libboost-system-dev libboost-program-options-dev libboost-regex-dev
 RUN git clone https://github.com/bclswl0827/dump1090 /tmp/dump1090 \
  && git clone https://github.com/bclswl0827/beast-splitter /tmp/beast-splitter
