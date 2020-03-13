@@ -16,6 +16,8 @@ RUN apt-get update && apt-get -y install \
 RUN echo "pi  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 ADD beast-splitter /etc/default/beast-splitter
 ADD dump1090-fa /etc/default/dump1090-fa
+RUN sed -i "s/LAT/$LAT/g" /etc/default/dump1090-fa
+RUN sed -i "s/LON/$LON/g" /etc/default/dump1090-fa
 CMD service ssh start
 CMD service beast-splitter start
 CMD service dump1090-fa start
