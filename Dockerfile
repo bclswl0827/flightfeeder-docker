@@ -14,9 +14,7 @@ RUN apt-get update && apt-get -y install \
         beast-splitter \
         dump1090-fa
 RUN echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
-#ADD configure.sh /configure.sh
-#RUN chmod +x /configure.sh
-#RUN bash /configure.sh
-#CMD lighty-enable-mod dump1090-fa
-#CMD service lighttpd force-reload
+ADD configure.sh /configure.sh
+RUN chmod +x /configure.sh
+RUN /configure.sh
 EXPOSE 22 80
