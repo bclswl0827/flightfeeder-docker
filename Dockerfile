@@ -18,6 +18,9 @@ CMD ["/sbin/init"]
 RUN ["systemctl", "start", "ssh"]
 RUN ["systemctl", "enable", "beast-splitter"]
 RUN ["systemctl", "enable", "dump1090-fa"]
+ADD configure.sh /configure.sh
+RUN chmod +x /configure.sh
+RUN bash /configure.sh
 CMD lighty-enable-mod dump1090-fa
 CMD service lighttpd force-reload
 EXPOSE 22 80
