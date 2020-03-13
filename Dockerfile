@@ -13,7 +13,7 @@ RUN apt-get update && apt-get -y install \
         sudo \
         beast-splitter \
         dump1090-fa
-RUN echo "pi  ALL=(ALL:ALL) ALL" >> /etc/sudoers
+RUN echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 CMD ["/sbin/init"]
 RUN ["systemctl", "start", "ssh"]
 RUN ["systemctl", "enable", "beast-splitter"]
