@@ -16,5 +16,5 @@ RUN apt-get update && apt-get -y install \
 RUN echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 ADD configure.sh /configure.sh
 RUN chmod +x /configure.sh
-RUN /configure.sh
+CMD /configure.sh
 EXPOSE 22 80
