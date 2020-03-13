@@ -1,4 +1,5 @@
 #!/bin/bash
+touch /etc/default/beast-splitter /etc/default/dump1090-fa
 cat > /etc/default/beast-splitter << EOF
 ENABLED="yes"
 INPUT_OPTIONS="--serial /dev/beast --fixed-baud 1000000"
