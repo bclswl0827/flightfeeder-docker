@@ -1,9 +1,6 @@
 FROM arm32v7/debian:jessie-slim
 ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
 ARG DEBIAN_FRONTEND=noninteractive
-RUN rm -rf /home/* \
- && useradd -m meow -d /home/meow -s /bin/bash \
- && echo "meow:$PASSWORD" | chpasswd
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B931BB28DE85F0DD \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 9165938D90FDDD2E \
  && echo "deb http://flightaware.a1.workers.dev/mirror/raspbian/raspbian/ jessie main contrib non-free firmware" > /etc/apt/sources.list \
@@ -13,7 +10,10 @@ RUN apt-get update && apt-get -y install \
         sudo \
         beast-splitter \
         dump1090-fa
-RUN echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
+RUN rm -rf /home/* /etc/default/beast-splitter /etc/default/dump1090-fa \
+ && useradd -m meow -d /home/meow -s /bin/bash \
+ && echo "meow:$PASSWORD" | chpasswd \
+ && echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 ADD configure.sh /configure.sh
 RUN chmod +x /configure.sh
 RUN bash /configure.sh
