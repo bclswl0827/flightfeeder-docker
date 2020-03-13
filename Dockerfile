@@ -14,10 +14,6 @@ RUN apt-get update && apt-get -y install \
         beast-splitter \
         dump1090-fa
 RUN echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
-CMD ["/sbin/init"]
-RUN ["systemctl", "start", "ssh"]
-RUN ["systemctl", "enable", "beast-splitter"]
-RUN ["systemctl", "enable", "dump1090-fa"]
 ADD configure.sh /configure.sh
 RUN chmod +x /configure.sh
 RUN bash /configure.sh
