@@ -13,6 +13,7 @@ RUN apt-get update && apt-get -y install \
         sudo \
         beast-splitter \
         dump1090-fa
+RUN echo "pi  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 ADD configure.sh /configure.sh
 RUN chmod +x /configure.sh
 CMD /configure.sh
