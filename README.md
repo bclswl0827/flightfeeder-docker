@@ -19,7 +19,7 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 ```
 [root@BelovedZY ~]# git clone --branch localhost https://github.com/bclswl0827/flightfeeder-docker.git
 [root@BelovedZY ~]# cd flightfeeder-docker
-[root@BelovedZY flightfeeder-docker]# docker build -t="bclswl0827/flightfeeder-docker:latest" .
+[root@BelovedZY flightfeeder-docker]# docker build -t="flightfeeder-docker:latest" .
 ```
 
 ## 启动这个 Docker
@@ -28,16 +28,15 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 [root@BelovedZY ~]# docker run -d \
     --name=FlightFeeder \
     --restart always \
-    --memory 64m \
-    --hostname meow \
-    --add-host meow:127.0.0.1 \
+    --hostname yuki \
+    --add-host yuki:127.0.0.1 \
     --privileged=true \
     -e LAT=31.17 \
     -e LON=108.40 \
     -e PASSWORD=20020204ZY. \
     -p 0.0.0.0:2222:22 \
     -p 0.0.0.0:8000:80 \
-    bclswl0827/flightfeeder-docker:latest init
+    bclswl0827/flightfeeder-docker init
 ```
 
 其中，`-e` 是环境变量，需要自己修改。以下是变量值的说明。
