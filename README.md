@@ -30,8 +30,8 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
     --restart always \
     --cpus 0.5 \
     --memory 64m \
-    --hostname raspberrypi \
-    --add-host raspberrypi:127.0.0.1 \
+    --hostname meow \
+    --add-host meow:127.0.0.1 \
     --privileged=true \
     -e LAT=31.17 \
     -e LON=108.40 \
