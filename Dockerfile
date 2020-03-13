@@ -2,7 +2,7 @@ FROM arm32v7/debian:jessie-slim
 ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
 ARG DEBIAN_FRONTEND=noninteractive
 RUN rm -rf /home/* \
- && useradd -m pi -d /home/pi -s /bin/bash \
+ && useradd -m meow -d /home/meow -s /bin/bash \
  && echo "pi:$PASSWORD" | chpasswd
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B931BB28DE85F0DD \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 9165938D90FDDD2E \
@@ -14,13 +14,10 @@ RUN apt-get update && apt-get -y install \
         beast-splitter \
         dump1090-fa
 RUN echo "pi  ALL=(ALL:ALL) ALL" >> /etc/sudoers
-ADD beast-splitter /etc/default/beast-splitter
-ADD dump1090-fa /etc/default/dump1090-fa
-RUN sed -i "s/LAT/$LAT/g" /etc/default/dump1090-fa
-RUN sed -i "s/LON/$LON/g" /etc/default/dump1090-fa
-CMD service ssh start
-CMD service beast-splitter start
-CMD service dump1090-fa start
+CMD ["/sbin/init"]
+RUN ["systemctl", "start", "ssh"]
+RUN ["systemctl", "enable", "beast-splitter"]
+RUN ["systemctl", "enable", "dump1090-fa"]
 CMD lighty-enable-mod dump1090-fa
 CMD service lighttpd force-reload
 EXPOSE 22 80
