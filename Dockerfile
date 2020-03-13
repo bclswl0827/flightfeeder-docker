@@ -1,4 +1,4 @@
-FROM arm32v7/debian:jessie-slim as builder
+FROM raspbian/stretch:latest as builder
 ARG DEBIAN_FRONTEND=noninteractive
 RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
  && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
@@ -14,7 +14,7 @@ RUN cd /tmp/src/dump1090 \
 RUN cd /tmp/src/beast-splitter \
  && dpkg-buildpackage -b --no-sign
 
-FROM arm32v7/debian:jessie-slim
+FROM raspbian/jessie:latest
 ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
 COPY --from=builder /tmp/src/beast-splitter_3.8.0_armhf.deb /tmp/beast-splitter_3.8.0_armhf.deb
 COPY --from=builder /tmp/src/dump1090-fa_3.8.0_armhf.deb /tmp/dump1090-fa_3.8.0_armhf.deb
