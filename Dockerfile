@@ -19,7 +19,7 @@ ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
 COPY --from=builder /tmp/src/*.deb /tmp/*.deb
 RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
  && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
- && apt-get update && apt-get install -y dirmngr \
+ && apt-get update && apt-get install -y dirmngr libusb-1.0-0-dev \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EF0F382A1A7B6500 \
  && apt-get update && apt-get install -y lighttpd \
