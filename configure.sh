@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
+echo "pi  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 cat > /etc/default/beast-splitter << EOF
 ENABLED=yes
 INPUT_OPTIONS="--serial /dev/beast --fixed-baud 1000000 "
