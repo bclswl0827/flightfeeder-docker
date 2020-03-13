@@ -28,7 +28,6 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 [root@BelovedZY ~]# docker run -d \
     --name=FlightFeeder \
     --restart always \
-    --cpus 0.5 \
     --memory 64m \
     --hostname meow \
     --add-host meow:127.0.0.1 \
