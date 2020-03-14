@@ -31,7 +31,9 @@ RUN cd /tmp/src/bladeRF \
  && dpkg-buildpackage -b
 RUN cd /tmp/src/beast-splitter \
  && dpkg-buildpackage -b
-RUN dpkg --install /tmp/src/libbladerf-dev_2017.07_armhf.deb \
+RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/libbladerf-dev_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/libbladerf-udev_2017.07_armhf.deb \
  && cd /tmp/src/dump1090 \
  && dpkg-buildpackage -b
 
