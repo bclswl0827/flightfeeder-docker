@@ -6,9 +6,9 @@ RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc
 RUN git clone https://gitee.com/bclswl0827/beast-splitter /tmp/src/beast-splitter \
  && git clone https://gitee.com/bclswl0827/dump1090 /tmp/src/dump1090
 RUN cd /tmp/src/beast-splitter \
- && dpkg-buildpackage -b --no-sign
+ && dpkg-buildpackage -b
 RUN cd /tmp/src/dump1090 \
- && dpkg-buildpackage -b --no-sign
+ && dpkg-buildpackage -b
 
 FROM raspbian/jessie:latest
 ARG DEBIAN_FRONTEND=noninteractive
