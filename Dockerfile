@@ -38,7 +38,7 @@ FROM raspbian/jessie:latest
 
 ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY. container=docker
 STOPSIGNAL SIGRTMIN+3
-CMD [ "/sbin/init" ]
+CMD ["/sbin/init"]
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN mkdir /tmp/src \
