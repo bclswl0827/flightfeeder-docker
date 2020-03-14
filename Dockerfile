@@ -51,8 +51,7 @@ RUN apt-get update && apt-get install -y \
                               lighttpd \
                               libfam0 \
                               mime-support \
-                              spawn-fcgi \
-                              libusb-1.0-0-dev
+                              spawn-fcgi
 
 COPY --from=builder /tmp/src/libbladerf1_2017.07_armhf.deb /tmp/src/libbladerf1_2017.07_armhf.deb
 COPY --from=builder /tmp/src/libbladerf-dev_2017.07_armhf.deb /tmp/src/libbladerf-dev_2017.07_armhf.deb
