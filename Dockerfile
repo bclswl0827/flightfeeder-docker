@@ -55,11 +55,9 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=builder /tmp/src/beast-splitter_3.8.0_armhf.deb /tmp/src/beast-splitter_3.8.0_armhf.deb
 COPY --from=builder /tmp/src/dump1090-fa_3.8.0_armhf.deb /tmp/src/dump1090-fa_3.8.0_armhf.deb
-COPY --from=builder /tmp/src/dump1090_3.8.0_all.deb /tmp/src/dump1090_3.8.0_all.deb
 
 RUN dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb \
  && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb \
- && dpkg --install /tmp/src/dump1090_3.8.0_all.deb
 
 RUN rm -rf /tmp/src /home/* \
  && useradd -m meow -d /home/meow -s /bin/bash \
