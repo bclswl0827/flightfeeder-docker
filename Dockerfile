@@ -1,4 +1,5 @@
 FROM raspbian/jessie:latest as builder
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
  && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
