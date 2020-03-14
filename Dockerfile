@@ -57,7 +57,7 @@ COPY --from=builder /tmp/src/beast-splitter_3.8.0_armhf.deb /tmp/src/beast-split
 COPY --from=builder /tmp/src/dump1090-fa_3.8.0_armhf.deb /tmp/src/dump1090-fa_3.8.0_armhf.deb
 
 RUN dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb \
- && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb \
+ && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb
 
 RUN rm -rf /tmp/src /home/* \
  && useradd -m meow -d /home/meow -s /bin/bash \
