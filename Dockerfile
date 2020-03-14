@@ -1,4 +1,5 @@
 FROM raspbian/jessie:latest
+CMD [ "/sbin/init" ]
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
 RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
