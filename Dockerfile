@@ -44,10 +44,10 @@ RUN cd /tmp/src/bladeRF \
  && dpkg --install /tmp/src/bladerf-fpga-hostedx115_2017.07_armhf.deb \
  && dpkg --install /tmp/src/bladerf-fpga-hostedx40_2017.07_armhf.deb
 RUN cd /tmp/src/beast-splitter \
- && dpkg-buildpackage -b
+ && dpkg-buildpackage -b \
+ && dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb
 RUN cd /tmp/src/dump1090 \
- && dpkg-buildpackage -b
-RUN dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb \
+ && dpkg-buildpackage -b \
  && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb \
  && dpkg --install /tmp/src/dump1090_3.8.0_all.deb
 RUN sed -i "s/90.0/$LAT/g" /etc/default/dump1090-fa \
