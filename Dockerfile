@@ -52,8 +52,8 @@ RUN cd /tmp/src/dump1090 \
  && dpkg-buildpackage -b \
  && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb \
  && dpkg --install /tmp/src/dump1090_3.8.0_all.deb
-RUN sed -i "s/90.0/$LAT/g" /etc/default/dump1090-fa \
- && sed -i "s/0.0/$LON/g" /etc/default/dump1090-fa
+RUN sed -i "s/<env1>/$LAT/g" /etc/default/dump1090-fa \
+ && sed -i "s/<env2>/$LON/g" /etc/default/dump1090-fa
 RUN rm -rf /tmp/src /home/* \
  && useradd -m meow -d /home/meow -s /bin/bash \
  && echo "meow:$PASSWORD" | chpasswd \
