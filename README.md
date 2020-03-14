@@ -17,9 +17,7 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 将 Mode-S Beast GPS 连接到树莓派。
 
 ```
-[root@BelovedZY ~]# git clone --branch localhost https://github.com/bclswl0827/flightfeeder-docker.git
-[root@BelovedZY ~]# cd flightfeeder-docker
-[root@BelovedZY flightfeeder-docker]# docker build -t="flightfeeder-docker:latest" .
+[root@BelovedZY ~]# docker pull bclswl0827/flightfeeder-docker:latest
 ```
 
 ## 启动这个 Docker
@@ -37,7 +35,7 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
     -p 0.0.0.0:8000:80 \
     --privileged \
     -v /dev/bus/usb:/dev/bus/usb \
-    flightfeeder-docker init
+    bclswl0827/flightfeeder-docker:latest init
 ```
 
 其中，`-e` 是环境变量，需要自己修改。以下是变量值的说明。
