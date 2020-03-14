@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y \
                               libusb-1.0-0-dev \
                               doxygen \
                               libtecla-dev \
-                              libtecla1-dev \
+                              libtecla1 \
                               help2man \
                               pandoc
 RUN git clone https://gitee.com/bclswl0827/bladeRF /tmp/src/bladeRF \
