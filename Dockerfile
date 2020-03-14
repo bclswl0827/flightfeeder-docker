@@ -38,6 +38,13 @@ RUN cd /tmp/src/beast-splitter \
 RUN cd /tmp/src/dump1090 \
  && dpkg-buildpackage -b
 RUN dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb \
+ && dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/libbladerf-dev_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/libbladerf-udev_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/bladerf_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/bladerf-firmware-fx3_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/bladerf-fpga-hostedx115_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/bladerf-fpga-hostedx40_2017.07_armhf.deb \
  && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb \
  && dpkg --install /tmp/src/dump1090_3.8.0_all.deb
 RUN sed -i "s/90.0/$LAT/g" /etc/default/dump1090-fa \
