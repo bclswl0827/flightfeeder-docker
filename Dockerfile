@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y \
                               libboost-system-dev \
                               libboost-program-options-dev \
                               libboost-regex-dev \
-                              libusb-1.0-0 \
                               libusb-1.0-0-dev \
                               doxygen \
                               libtecla-dev \
@@ -52,7 +51,6 @@ RUN apt-get update && apt-get install -y \
                               libfam0 \
                               mime-support \
                               spawn-fcgi \
-                              libusb-1.0-0 \
                               libusb-1.0-0-dev
 
 COPY --from=builder /tmp/src/libbladerf1_2017.07_armhf.deb /tmp/src/libbladerf1_2017.07_armhf.deb
