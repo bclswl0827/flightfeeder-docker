@@ -54,7 +54,7 @@ RUN apt-get update && apt-get install -y \
                               libtecla-dev \
                               libtecla1 \
                               help2man \
-                              pandoc \
+                              pandoc
 RUN git clone https://gitee.com/bclswl0827/bladeRF /tmp/src/bladeRF \
  && git clone https://gitee.com/bclswl0827/beast-splitter /tmp/src/beast-splitter \
  && git clone https://gitee.com/bclswl0827/dump1090 /tmp/src/dump1090
