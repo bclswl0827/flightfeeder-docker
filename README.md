@@ -30,7 +30,7 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
     --restart always \
     --hostname yuki \
     --add-host yuki:127.0.0.1 \
-    --privileged=true \
+    --device=/dev/ttyUSB0:/dev/ttyUSB0 \
     -e LAT=31.17 \
     -e LON=108.40 \
     -e PASSWORD=20020204ZY. \
