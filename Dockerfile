@@ -51,7 +51,10 @@ RUN apt-get update && apt-get install -y \
                               lighttpd \
                               libfam0 \
                               mime-support \
-                              spawn-fcgi
+                              spawn-fcgi \
+                              libboost-regex-dev \
+                              libboost-program-options-dev \
+                              libboost-system-dev
 
 COPY --from=builder /tmp/src/beast-splitter_3.8.0_armhf.deb /tmp/src/beast-splitter_3.8.0_armhf.deb
 COPY --from=builder /tmp/src/dump1090-fa_3.8.0_armhf.deb /tmp/src/dump1090-fa_3.8.0_armhf.deb
