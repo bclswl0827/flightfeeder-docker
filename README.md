@@ -33,7 +33,7 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
     -e PASSWORD=20020204ZY. \
     -p 0.0.0.0:2222:22 \
     -p 0.0.0.0:8000:80 \
-    --memory="64m" \
+    --memory="96m" \
     --memory-swap="192m" \
     --oom-kill-disable \
     --privileged \
