@@ -25,17 +25,18 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 ## 启动这个 Docker
 
 ```
-[root@BelovedZY ~]# docker run -d \
+[root@BelovedZY ~]# docker run -d -i -t \
     --name=FlightFeeder \
     --restart always \
     --hostname yuki \
     --add-host yuki:127.0.0.1 \
-    --device=/dev/ttyUSB0:/dev/ttyUSB0 \
     -e LAT=31.17 \
     -e LON=108.40 \
     -e PASSWORD=20020204ZY. \
     -p 0.0.0.0:2222:22 \
     -p 0.0.0.0:8000:80 \
+    --privileged \
+    -v /dev/bus/usb:/dev/bus/usb \
     flightfeeder-docker init
 ```
 
