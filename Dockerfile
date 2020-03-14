@@ -1,9 +1,8 @@
 FROM raspbian/jessie:latest
-ENV container docker
+ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY. container=docker
 STOPSIGNAL SIGRTMIN+3
 CMD [ "/sbin/init" ]
 ARG DEBIAN_FRONTEND=noninteractive
-ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
 RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
  && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010
