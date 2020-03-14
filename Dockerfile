@@ -1,31 +1,49 @@
-FROM raspbian/jessie:latest as builder
+FROM raspbian/jessie:latest
 ARG DEBIAN_FRONTEND=noninteractive
+ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
 RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
  && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
- && apt-get update && apt-get install -y --allow-unauthenticated git build-essential debhelper librtlsdr-dev pkg-config dh-systemd libncurses5-dev libbladerf-dev libboost-system-dev libboost-program-options-dev libboost-regex-dev libusb-1.0-0-dev
-RUN git clone https://gitee.com/bclswl0827/beast-splitter /tmp/src/beast-splitter \
+ && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010
+RUN apt-get update && apt-get install -y \
+                              lighttpd \
+                              libfam0 \
+                              mime-support \
+                              spawn-fcgi \
+                              git \
+                              cmake \
+                              build-essential \
+                              debhelper \
+                              librtlsdr-dev \
+                              pkg-config \
+                              dh-systemd \
+                              libncurses5-dev \
+                              libboost-system-dev \
+                              libboost-program-options-dev \
+                              libboost-regex-dev \
+                              libusb-1.0-0 \
+                              libusb-1.0-0-dev \
+                              doxygen \
+                              libtecla-dev \
+                              libtecla1-dev \
+                              help2man \
+                              pandoc
+RUN git clone https://gitee.com/bclswl0827/bladeRF /tmp/src/bladeRF \
+ && git clone https://gitee.com/bclswl0827/beast-splitter /tmp/src/beast-splitter \
  && git clone https://gitee.com/bclswl0827/dump1090 /tmp/src/dump1090
+RUN cd /tmp/src/bladeRF \
+ && git checkout 2017.12-rc1 \
+ && dpkg-buildpackage -b
 RUN cd /tmp/src/beast-splitter \
  && dpkg-buildpackage -b
 RUN cd /tmp/src/dump1090 \
  && dpkg-buildpackage -b
-
-FROM raspbian/jessie:latest
-ARG DEBIAN_FRONTEND=noninteractive
-ENV LAT=31.17 LON=108.40 PASSWORD=20020204ZY.
-COPY --from=builder /tmp/src/beast-splitter_3.8.0_armhf.deb /tmp/beast-splitter_3.8.0_armhf.deb
-COPY --from=builder /tmp/src/dump1090-fa_3.8.0_armhf.deb /tmp/dump1090-fa_3.8.0_armhf.deb
-COPY --from=builder /tmp/src/dump1090_3.8.0_all.deb /tmp/dump1090_3.8.0_all.deb
-RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
- && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010 \
- && apt-get update && apt-get install -y lighttpd libfam0 mime-support spawn-fcgi \
- && dpkg --install /tmp/beast-splitter_3.8.0_armhf.deb \
- && dpkg --install /tmp/dump1090-fa_3.8.0_armhf.deb \
- && dpkg --install /tmp/dump1090_3.8.0_all.deb \
- && sed -i "s/90.0/$LAT/g" /etc/default/dump1090-fa \
+RUN dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb \
+ && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb \
+ && dpkg --install /tmp/src/dump1090_3.8.0_all.deb
+RUN sed -i "s/90.0/$LAT/g" /etc/default/dump1090-fa \
  && sed -i "s/0.0/$LON/g" /etc/default/dump1090-fa
-RUN useradd -m meow -d /home/meow -s /bin/bash \
+RUN rm -rf /tmp/src /home/* \
+ && useradd -m meow -d /home/meow -s /bin/bash \
  && echo "meow:$PASSWORD" | chpasswd \
  && echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 RUN /etc/init.d/lighttpd restart
