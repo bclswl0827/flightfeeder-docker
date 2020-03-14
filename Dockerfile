@@ -56,12 +56,20 @@ RUN apt-get update && apt-get install -y \
                               spawn-fcgi \
                               libboost-regex-dev \
                               libboost-program-options-dev \
-                              libboost-system-dev
+                              libboost-system-dev \
+                              libusb-1.0-0-dev \
+                              librtlsdr-dev
 
+COPY --from=builder  /tmp/src/libbladerf1_2017.07_armhf.deb /tmp/src/libbladerf1_2017.07_armhf.deb
+COPY --from=builder /tmp/src/libbladerf-dev_2017.07_armhf.deb /tmp/src/libbladerf-dev_2017.07_armhf.deb
+COPY --from=builder /tmp/src/libbladerf-udev_2017.07_armhf.deb /tmp/src/libbladerf-udev_2017.07_armhf.deb
 COPY --from=builder /tmp/src/beast-splitter_3.8.0_armhf.deb /tmp/src/beast-splitter_3.8.0_armhf.deb
 COPY --from=builder /tmp/src/dump1090-fa_3.8.0_armhf.deb /tmp/src/dump1090-fa_3.8.0_armhf.deb
 
-RUN dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb \
+RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/libbladerf-dev_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/libbladerf-udev_2017.07_armhf.deb \
+ && dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb \
  && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb
 
 RUN rm -rf /tmp/src /home/* \
