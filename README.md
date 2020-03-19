@@ -20,20 +20,20 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 
 ```
 [root@BelovedZY ~]# docker run -d -i -t \
-    --name=FlightFeeder \
-    --restart always \
-    --hostname yuki \
-    --add-host yuki:127.0.0.1 \
-    -e LAT=31.17 \
-    -e LON=108.40 \
-    -e PASSWORD=20020204ZY. \
-    -p 0.0.0.0:2222:22 \
-    -p 0.0.0.0:8000:80 \
-    --memory="96m" \
-    --memory-swap="192m" \
-    --oom-kill-disable \
-    --privileged \
-    bclswl0827/flightfeeder-docker:latest init
+	--name=FlightFeeder \
+	--restart always \
+	--hostname yuki \
+	--add-host yuki:127.0.0.1 \
+	-e LAT=31.17 \
+	-e LON=108.40 \
+	-e PASSWORD=20020204ZY. \
+	-p 0.0.0.0:2222:22 \
+	-p 0.0.0.0:8000:80 \
+	--memory="96m" \
+	--memory-swap="192m" \
+	--oom-kill-disable \
+	--privileged \
+	bclswl0827/flightfeeder-docker:latest init
 ```
 
 其中，`-e` 是环境变量，需要自己修改。以下是变量值的说明。
