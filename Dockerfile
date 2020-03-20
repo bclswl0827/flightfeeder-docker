@@ -39,7 +39,7 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
 
 FROM raspbian/jessie:latest
 ARG DEBIAN_FRONTEND=noninteractive
-ENV container=docker
+ENV LAT=31.17 LON=108.40 container=docker
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
 
@@ -69,13 +69,9 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
  && dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb \
  && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb
 
-RUN rm -rf /tmp/src /home/* \
- && useradd -m meow -d /home/meow -s /bin/bash \
- && echo "meow:$PASSWORD" | chpasswd \
- && echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
-
-RUN sed -i "s/<env1>/$LAT/g" /etc/default/dump1090-fa \
- && sed -i "s/<env2>/$LON/g" /etc/default/dump1090-fa
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 
 RUN /etc/init.d/lighttpd restart
 RUN /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json >/dev/null 2>&1 &
