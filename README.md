@@ -24,9 +24,9 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 	--restart always \
 	--hostname yuki \
 	--add-host yuki:127.0.0.1 \
-	-e LAT="31" \
-	-e LON="108" \
-	-e PASSWORD="20020204ZY" \
+	--env LAT="31" \
+	--env LON="108" \
+	--env PASSWORD="20020204ZY" \
 	-p 0.0.0.0:2222:22 \
 	-p 0.0.0.0:8000:80 \
 	--memory="96m" \
