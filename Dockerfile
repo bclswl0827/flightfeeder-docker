@@ -69,6 +69,11 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
  && dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb \
  && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb
 
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-CMD /entrypoint.sh
+RUN rm -rf /tmp/src /home/* \
+ && useradd -m meow -d /home/meow -s /bin/bash \
+ &&  echo "meow:$PASSWORD" | chpasswd \
+ && echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
+
+RUN /etc/init.d/lighttpd restart \
+ && /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json >/dev/null 2>&1 & \
+ && /usr/share/dump1090-fa/start-dump1090-fa --write-json %t/dump1090-fa --quiet >/dev/null 2>&1 &
