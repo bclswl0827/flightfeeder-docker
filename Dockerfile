@@ -80,5 +80,3 @@ RUN sed -i "s/<env1>/$LAT/g" /etc/default/dump1090-fa \
 RUN /etc/init.d/lighttpd restart
 RUN /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json >/dev/null 2>&1 &
 RUN /usr/share/dump1090-fa/start-dump1090-fa --write-json %t/dump1090-fa --quiet >/dev/null 2>&1 &
-
-EXPOSE 22 80
