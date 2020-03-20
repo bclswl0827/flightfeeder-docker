@@ -19,7 +19,7 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 ## 启动这个 Docker
 
 ```
-[root@BelovedZY ~]# docker run -d -i -t \
+[root@BelovedZY ~]# docker run -d \
 	--name=FlightFeeder \
 	--restart always \
 	--hostname yuki \
