@@ -39,7 +39,7 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
 
 FROM raspbian/jessie:latest
 ARG DEBIAN_FRONTEND=noninteractive
-ENV LAT=31 LON=108 PASSWORD=20020204ZY container=docker
+ENV PASSWORD=20020204ZY container=docker
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
 
@@ -71,7 +71,7 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
 
 RUN rm -rf /tmp/src /home/* \
  && useradd -m meow -d /home/meow -s /bin/bash \
- &&  echo "meow:$PASSWORD" | chpasswd \
+ && echo "meow:$PASSWORD" | chpasswd \
  && echo "meow  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 RUN /etc/init.d/lighttpd restart \
