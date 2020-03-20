@@ -24,8 +24,6 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 	--restart always \
 	--hostname yuki \
 	--add-host yuki:127.0.0.1 \
-	--env PASSWORD="20020204ZY" \
-	-p 0.0.0.0:2222:22 \
 	-p 0.0.0.0:8000:80 \
 	--memory="96m" \
 	--memory-swap="192m" \
@@ -34,29 +32,19 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 	bclswl0827/flightfeeder-docker:latest init
 ```
 
-其中，`-e` 是环境变量，需要自己修改。以下是变量值的说明。
-
- - `PASSWORD` --> `用于 SSH 的密码`
-
-## SSH 如何连接
-
-本镜像预留的 SSH 账户名为 `meow`，用户目录位于 `/home/meow`，密码为变量 `PASSWORD` 所定义的值，如不定义，则默认为 `20020204ZY.`。
-
-连接到这个 Docker 实例，IP 为宿主机的地址，端口为 2222.
-
-示例如下，宿主机 IP 为 `10.10.10.10`。
+## 进入 Docker
 
 ```
-ssh meow@10.10.10.10 -p 2222
+[root@BelovedZY ~]# docker exec -it FlightFeeder /bin/bash
 ```
 
 ## 注意
 
-SSH 仅用于调试，由于 Docker 不能实现持久化储存，如果配置被人为更改，在第二次启动时，上一次人为更改的所有内容都将会复位。
+由于 Docker 不能实现持久化储存，如果配置被人为更改，在第二次启动时，上一次人为更改的所有内容都将会复位。
 
 ## 看飞机
 
-仍以宿主机 IP `10.10.10.10` 为例。
+以宿主机 IP `10.10.10.10` 为例。
 
 浏览器打开 `http://10.10.10.10:8000/dump1090-fa/` 即可看到实时航班资讯。
 
