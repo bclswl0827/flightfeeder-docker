@@ -24,8 +24,6 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 	--restart always \
 	--hostname yuki \
 	--add-host yuki:127.0.0.1 \
-	--env LAT="31" \
-	--env LON="108" \
 	--env PASSWORD="20020204ZY" \
 	-p 0.0.0.0:2222:22 \
 	-p 0.0.0.0:8000:80 \
@@ -38,8 +36,6 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 
 其中，`-e` 是环境变量，需要自己修改。以下是变量值的说明。
 
- - `LAT` --> `纬度`
- - `LON` --> `经度`
  - `PASSWORD` --> `用于 SSH 的密码`
 
 ## SSH 如何连接
