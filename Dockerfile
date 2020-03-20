@@ -71,4 +71,4 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/entrypoint.sh"]
