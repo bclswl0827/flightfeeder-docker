@@ -68,6 +68,6 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
  && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb
 
 RUN rm -rf /tmp/src /home/* \
- && /etc/init.d/lighttpd restart \
- && /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json >/dev/null 2>&1 & \
- && /usr/share/dump1090-fa/start-dump1090-fa --write-json %t/dump1090-fa --quiet >/dev/null 2>&1 &
+ && /etc/init.d/lighttpd restart
+RUN /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json >/dev/null 2>&1 &
+RUN /usr/share/dump1090-fa/start-dump1090-fa --write-json %t/dump1090-fa --quiet >/dev/null 2>&1 &
