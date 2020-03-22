@@ -22,8 +22,6 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 [root@BelovedZY ~]# docker run -d -i -t \
 	--name=FlightFeeder \
 	--restart always \
-	--hostname yuki \
-	--add-host yuki:127.0.0.1 \
 	-p 0.0.0.0:8000:80 \
 	--memory="96m" \
 	--memory-swap="192m" \
