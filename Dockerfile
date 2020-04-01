@@ -39,7 +39,6 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
 
 FROM raspbian/jessie:latest
 ARG DEBIAN_FRONTEND=noninteractive
-ENV PASSWORD=20020204ZY container=docker
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
 
