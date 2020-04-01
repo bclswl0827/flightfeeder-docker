@@ -1,10 +1,7 @@
 FROM raspbian/jessie:latest as builder
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
- && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010 \
- && apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
                               git \
                               cmake \
                               build-essential \
@@ -22,9 +19,9 @@ RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc
                               libtecla1 \
                               help2man \
                               pandoc \
- && git clone https://gitee.com/bclswl0827/bladeRF /tmp/src/bladeRF \
- && git clone https://gitee.com/bclswl0827/beast-splitter /tmp/src/beast-splitter \
- && git clone https://gitee.com/bclswl0827/dump1090 /tmp/src/dump1090 \
+ && git clone https://github.com/Nuand/bladeRF /tmp/src/bladeRF \
+ && git clone https://github.com/bclswl0827/beast-splitter /tmp/src/beast-splitter \
+ && git clone https://github.com/bclswl0827/dump1090 /tmp/src/dump1090 \
  && cd /tmp/src/bladeRF \
  && git checkout 2017.12-rc1 \
  && dpkg-buildpackage -b \
@@ -40,9 +37,6 @@ FROM raspbian/jessie:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN mkdir /tmp/src \
- && sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
- && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010 \
  && apt-get update && apt-get install -y \
                               lighttpd \
                               libboost-regex-dev \
