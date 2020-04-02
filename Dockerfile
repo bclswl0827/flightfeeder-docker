@@ -38,6 +38,8 @@ RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc
 
 FROM raspbian/jessie:latest
 ARG DEBIAN_FRONTEND=noninteractive
+STOPSIGNAL SIGRTMIN+3
+CMD ["/sbin/init"]
 
 RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
  && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
@@ -65,4 +67,4 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
  && rm -rf /tmp/src /home/*
 
 RUN /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json >/dev/null 2>&1 &
-RUN /usr/share/dump1090-fa/start-dump1090-fa --write-json %t/dump1090-fa --quiet >/dev/null 2>&1 &
+RUN /etc/init.d/lighttpd restart
