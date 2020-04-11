@@ -545,7 +545,7 @@ proc prepare_system_info {} {
 	}
 
 	try {
-		fetch_status_keys "/run/beast-splitter/status.json" {piaware radio gps network adept mlat} sysinfo
+		fetch_status_keys "/run/flightfeeder/status.json" {piaware radio gps network adept mlat} sysinfo
 	} on error {result} {
 		logger "failed to fetch status keys from ff-health-monitor: $result"
 		lappend sysinfo(checkin-errors) $result
