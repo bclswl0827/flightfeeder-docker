@@ -66,6 +66,8 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
  && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb \
  && rm -rf /tmp/src /home/*
 
-ENTRYPOINT ["/entrypoint.sh"]
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["sh", "/entrypoint.sh"]
 
 CMD /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json && /etc/init.d/lighttpd restart
