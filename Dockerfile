@@ -1,7 +1,5 @@
 FROM raspbian/jessie:latest
 ARG DEBIAN_FRONTEND=noninteractive
-STOPSIGNAL SIGRTMIN+3
-CMD ["/sbin/init"]
 
 RUN echo -e "\n1.0.0.1 flightaware.a1.workers.dev\n" >> /etc/hosts \
  && echo "deb http://flightaware.a1.workers.dev/mirror/raspbian/raspbian/ jessie main contrib non-free firmware" > /etc/apt/sources.list \
@@ -13,3 +11,4 @@ RUN echo -e "\n1.0.0.1 flightaware.a1.workers.dev\n" >> /etc/hosts \
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["sh", "/entrypoint.sh"]
+CMD ["/sbin/init"]
