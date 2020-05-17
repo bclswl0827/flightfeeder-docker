@@ -22,5 +22,6 @@ JSON_OPTIONS="--json-location-accuracy 2"
 RECEIVER_OPTIONS="--net-only --net-bo-port 0 --fix"
 EOF
 
-/usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json >/dev/null 2>&1 &
-/usr/share/dump1090-fa/start-dump1090-fa --write-json %t/dump1090-fa --quiet >/dev/null 2>&1 &
+/usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json &
+/usr/share/dump1090-fa/start-dump1090-fa --write-json %t/dump1090-fa --quiet &
+/usr/sbin/lighttpd", "-D", "-f /etc/lighttpd/lighttpd.conf
