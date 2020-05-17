@@ -14,6 +14,12 @@ if [ -z "$LON" ]; then
 	exit 1
 fi
 
+cat << EOF > /etc/default/beast-splitter
+ENABLED="yes"
+INPUT_OPTIONS="--serial /dev/beast --fixed-baud 1000000"
+OUTPUT_OPTIONS="--listen 30005:R --connect localhost:30104:R"
+EOF
+
 cat << EOF > /etc/default/dump1090-fa
 ENABLED=yes
 DECODER_OPTIONS="--lat $LAT --lon $LON --max-range 360"
