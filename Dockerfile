@@ -9,9 +9,9 @@ RUN echo -e "\n1.0.0.1 flightaware.a1.workers.dev\n" >> /etc/hosts \
  && echo -e "deb http://flightaware.a1.workers.dev/mirror/raspberrypi/debian/ jessie main ui" > /etc/apt/sources.list.d/raspberrypi.org.list \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B931BB28DE85F0DD \
  && apt-get update \
- && apt-get install -y dump1090-fa beast-splitter gpsd-beast
+ && apt-get install -y beast-splitter dump1090-fa
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 
-CMD /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json
+CMD ["/usr/sbin/lighttpd", "-D", "-f /etc/lighttpd/lighttpd.conf"]
