@@ -12,7 +12,6 @@ RUN echo -e "\n1.0.0.1 flightaware.a1.workers.dev\n" >> /etc/hosts \
  && apt-get install -y dump1090-fa beast-splitter gpsd-beast
 
 ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 
 CMD /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json
