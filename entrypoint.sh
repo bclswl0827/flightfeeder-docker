@@ -24,4 +24,4 @@ EOF
 
 /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json &
 /usr/share/dump1090-fa/start-dump1090-fa --write-json %t/dump1090-fa --quiet &
-/usr/sbin/lighttpd", "-D", "-f /etc/lighttpd/lighttpd.conf
+/usr/sbin/lighttpd -D -f /etc/lighttpd/lighttpd.conf
