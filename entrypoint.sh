@@ -1,7 +1,5 @@
 #!/bin/bash
 
-/sbin/init
-
 set -e
 
 if [ -z "$LAT" ]; then
