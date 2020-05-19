@@ -8,5 +8,6 @@ RUN echo -e "\n1.0.0.1 flightaware.a1.workers.dev\n" >> /etc/hosts \
  && apt-get update \
  && apt-get install -y beast-splitter dump1090-fa
 
+CMD ["/sbin/init"]
 ADD entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/sbin/init", "&&", "sh", "/entrypoint.sh"]
+RUN sh -c /entrypoint.sh
