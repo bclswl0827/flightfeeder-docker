@@ -10,4 +10,5 @@ RUN echo -e "\n1.0.0.1 flightaware.a1.workers.dev\n" >> /etc/hosts \
 
 CMD ["/sbin/init"]
 ADD entrypoint.sh /entrypoint.sh
-RUN sh -c /entrypoint.sh
+RUN chmod +x /entrypoint.sh \
+ && sh /entrypoint.sh
