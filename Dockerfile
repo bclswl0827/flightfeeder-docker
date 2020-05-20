@@ -1,8 +1,8 @@
-FROM raspbian/jessie:latest as builder
+FROM raspbian/jessie:latest as init
 
 CMD ["/sbin/init"]
 
-FROM builder
+FROM init
 
 RUN echo -e "\n1.0.0.1 flightaware.a1.workers.dev\n" >> /etc/hosts \
  && echo "deb http://flightaware.a1.workers.dev/mirror/raspbian/raspbian/ jessie main contrib non-free firmware" > /etc/apt/sources.list \
