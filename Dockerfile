@@ -1,4 +1,8 @@
-FROM raspbian/jessie:latest
+FROM raspbian/jessie:latest as builder
+
+CMD ["/sbin/init"]
+
+FROM builder
 
 RUN echo -e "\n1.0.0.1 flightaware.a1.workers.dev\n" >> /etc/hosts \
  && echo "deb http://flightaware.a1.workers.dev/mirror/raspbian/raspbian/ jessie main contrib non-free firmware" > /etc/apt/sources.list \
@@ -9,4 +13,4 @@ RUN echo -e "\n1.0.0.1 flightaware.a1.workers.dev\n" >> /etc/hosts \
  && apt-get install -y beast-splitter dump1090-fa
 
 ADD entrypoint.sh /entrypoint.sh
-ENTRYPOINT init && sh /entrypoint.sh
+ENTRYPOINT ["sh", "/entrypoint.sh"]
