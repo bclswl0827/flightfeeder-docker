@@ -27,6 +27,7 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 	--memory-swap="64m" \
 	--oom-kill-disable \
 	--privileged \
+	--init \
 	bclswl0827/flightfeeder-docker:latest
 ```
 
