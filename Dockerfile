@@ -69,5 +69,5 @@ RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
 RUN apt-get clean \
  && mkdir /run/beast-splitter /run/dump1090-fa
 
-RUN /usr/share/beast-splitter/start-beast-splitter --status-file %t/beast-splitter/status.json >/dev/null 2>&1 &
+RUN /usr/share/beast-splitter/start-beast-splitter --status-file /run/beast-splitter/status.json >/dev/null 2>&1 &
 RUN /etc/init.d/lighttpd restart
