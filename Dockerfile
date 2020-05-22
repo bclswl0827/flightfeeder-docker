@@ -8,7 +8,7 @@ RUN echo -e "\n1.0.0.1 flightaware.a1.workers.dev\n" >> /etc/hosts \
  && apt-get update \
  && apt-get install -y beast-splitter dump1090-fa
 
-RUN apt clean \
+RUN apt-get clean \
  && mkdir /run/beast-splitter /run/dump1090-fa \
  && echo -e 'ENABLED="yes"\nINPUT_OPTIONS="--serial /dev/beast --fixed-baud 1000000"\nOUTPUT_OPTIONS="--listen 30005:R --connect localhost:30104:R"\n' > /etc/default/beast-splitter \
  && echo -e 'ENABLED=yes\nDECODER_OPTIONS="--max-range 360"\nNET_OPTIONS="--net --net-heartbeat 60 --net-ro-size 1000 --net-ro-interval 1 --net-http-port 0 --net-ri-port 0 --net-ro-port 30002 --net-sbs-port 30003 --net-bi-port 30004,30104"\nJSON_OPTIONS="--json-location-accuracy 2"\nRECEIVER_OPTIONS="--net-only --net-bo-port 0 --fix"' > /etc/default/dump1090-fa
