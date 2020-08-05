@@ -1,9 +1,8 @@
-FROM raspbian/jessie:latest as builder
+FROM debian:buster as builder
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
- && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010 \
+RUN sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
+ && sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
  && apt-get update && apt-get install -y \
                               git \
                               cmake \
@@ -22,52 +21,52 @@ RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc
                               libtecla1 \
                               help2man \
                               pandoc \
- && git clone https://gitee.com/bclswl0827/bladeRF /tmp/src/bladeRF \
- && git clone https://gitee.com/bclswl0827/beast-splitter /tmp/src/beast-splitter \
- && git clone https://gitee.com/bclswl0827/dump1090 /tmp/src/dump1090 \
- && cd /tmp/src/bladeRF \
+                              udev
+
+RUN git clone https://gitee.com/bclswl0827/bladeRF /tmp/src/bladeRF \
+ && git clone https://github.com/bclswl0827/beast-splitter /tmp/src/beast-splitter \
+ && git clone https://github.com/bclswl0827/dump1090 /tmp/src/dump1090
+
+RUN cd /tmp/src/bladeRF \
  && git checkout 2017.12-rc1 \
- && dpkg-buildpackage -b \
- && cd /tmp/src/beast-splitter \
- && dpkg-buildpackage -b \
- && dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
- && dpkg --install /tmp/src/libbladerf-dev_2017.07_armhf.deb \
- && dpkg --install /tmp/src/libbladerf-udev_2017.07_armhf.deb \
+ && dpkg-buildpackage -b
+
+RUN cd /tmp/src/beast-splitter \
+ && dpkg-buildpackage -b
+
+RUN dpkg --install /tmp/src/libbladerf1_2017.07_$(dpkg --print-architecture).deb \
+ && dpkg --install /tmp/src/libbladerf-dev_2017.07_$(dpkg --print-architecture).deb \
+ && dpkg --install /tmp/src/libbladerf-udev_2017.07_$(dpkg --print-architecture).deb \
  && cd /tmp/src/dump1090 \
  && dpkg-buildpackage -b
 
-FROM raspbian/jessie:latest
-ARG DEBIAN_FRONTEND=noninteractive
-STOPSIGNAL SIGRTMIN+3
-CMD ["/sbin/init"]
+RUN rm -rf /tmp/src/bladeRF /tmp/src/beast-splitter /tmp/src/dump1090
 
-RUN sed -i "s/archive.raspbian.org/mirror.tuna.tsinghua.edu.cn\/raspbian/g" /etc/apt/sources.list \
- && sed -i "s/archive.raspberrypi.org/mirror.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010 \
- && mkdir /tmp/src \
+FROM debian:buster
+
+RUN sed -i "s/deb.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
+ && sed -i "s/security.debian.org/mirrors.bfsu.edu.cn/g" /etc/apt/sources.list \
  && apt-get update && apt-get install -y \
                               lighttpd \
+                              libncurses6 \
                               libboost-regex-dev \
                               libboost-program-options-dev \
                               libboost-system-dev \
                               libusb-1.0-0-dev \
-                              librtlsdr-dev
+                              librtlsdr-dev \
+                              udev
 
-COPY --from=builder /tmp/src/libbladerf1_2017.07_armhf.deb /tmp/src/libbladerf1_2017.07_armhf.deb
-COPY --from=builder /tmp/src/libbladerf-dev_2017.07_armhf.deb /tmp/src/libbladerf-dev_2017.07_armhf.deb
-COPY --from=builder /tmp/src/libbladerf-udev_2017.07_armhf.deb /tmp/src/libbladerf-udev_2017.07_armhf.deb
-COPY --from=builder /tmp/src/beast-splitter_3.8.0_armhf.deb /tmp/src/beast-splitter_3.8.0_armhf.deb
-COPY --from=builder /tmp/src/dump1090-fa_3.8.0_armhf.deb /tmp/src/dump1090-fa_3.8.0_armhf.deb
+COPY --from=builder /tmp/src /tmp/pkg
 
-RUN dpkg --install /tmp/src/libbladerf1_2017.07_armhf.deb \
- && dpkg --install /tmp/src/libbladerf-dev_2017.07_armhf.deb \
- && dpkg --install /tmp/src/libbladerf-udev_2017.07_armhf.deb \
- && dpkg --install /tmp/src/beast-splitter_3.8.0_armhf.deb \
- && dpkg --install /tmp/src/dump1090-fa_3.8.0_armhf.deb \
- && rm -rf /tmp/src /home/*
-
-RUN apt-get clean \
+RUN dpkg --install /tmp/pkg/libbladerf1_2017.07_$(dpkg --print-architecture).deb \
+ && dpkg --install /tmp/pkg/libbladerf-dev_2017.07_$(dpkg --print-architecture).deb \
+ && dpkg --install /tmp/pkg/libbladerf-udev_2017.07_$(dpkg --print-architecture).deb \
+ && dpkg --install /tmp/pkg/beast-splitter_3.8.0_$(dpkg --print-architecture).deb \
+ && dpkg --install /tmp/pkg/dump1090-fa_3.8.0_$(dpkg --print-architecture).deb \
+ && rm -rf /tmp/pkg \
+ && apt-get clean \
  && mkdir /run/beast-splitter /run/dump1090-fa
 
-RUN /usr/share/beast-splitter/start-beast-splitter --status-file /run/beast-splitter/status.json >/dev/null 2>&1 &
-RUN /etc/init.d/lighttpd restart
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["sh", "-c", "/entrypoint.sh"]
