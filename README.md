@@ -34,9 +34,3 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 以宿主机 IP `10.10.10.10` 为例。
 
 浏览器打开 `http://10.10.10.10:8000/dump1090-fa/` 即可看到实时航班资讯。
-
-## 支持
-
-觉得还可以的话就打赏一下吧～
-
-![微信支付](https://ibcl.us/images/wechatpay.png "微信支付")
