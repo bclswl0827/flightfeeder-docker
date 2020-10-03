@@ -23,7 +23,7 @@ else
 fi
 
 /etc/init.d/udev start
-/usr/bin/sleep 2s
+sleep 2s
 
 /etc/init.d/lighttpd restart
 /usr/share/beast-splitter/start-beast-splitter --status-file /run/beast-splitter/status.json &
