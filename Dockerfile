@@ -13,7 +13,7 @@ RUN sed -e "s/security.debian.org/mirrors.bfsu.edu.cn/g" \
  && apt-get install --no-install-recommends -y gpsd \
                                                beast-splitter \
                                                dump1090-fa \
- && chmod +x /entrypoint.sh \
+ && chmod +x /opt/entrypoint.sh \
  && apt-get autoremove --purge -y gnupg1 \
  && rm -rf /var/lib/apt/lists/*
  
