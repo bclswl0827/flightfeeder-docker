@@ -13,14 +13,16 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 其中，LAT 和 LON 变量需要设定为自己所在地的坐标，否则航班无法正常显示。
 
 ```
-[root@BelovedZY ~]# docker run -d -i -t \
+[root@BelovedZY ~]# docker run -d \
+  --device /dev/ttyUSB0 \
+  --device /dev/ttyUSB1 \
   --name flightfeeder \
   --restart always \
-  -p 8000:80 \
+  -p 80:80 \
+  -p 8080:8080 \
   -p 30005:30005 \
   -e LAT="31.492837" \
   -e LON="121.338541" \
-  --privileged \
   bclswl0827/flightfeeder-docker:latest
 ```
 
@@ -34,4 +36,4 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 
 以宿主机 IP `10.10.10.10` 为例。
 
-浏览器打开 `http://10.10.10.10:8000/dump1090-fa/` 即可看到实时航班资讯。
+浏览器打开 `http://10.10.10.10/dump1090-fa/` 即可看到实时航班资讯。
