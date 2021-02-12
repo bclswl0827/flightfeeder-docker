@@ -30,6 +30,6 @@ RECEIVER_OPTIONS="--net-only --net-bo-port 0 --fix"
 EOF
 
 /usr/sbin/lighttpd -f /etc/lighttpd/lighttpd.conf
-gpsd -b /dev/ttyUSB1 -F /var/run/gpsd.sock -n -N &
+#gpsd -b /dev/ttyUSB1 -F /var/run/gpsd.sock -n -N &
 /usr/share/beast-splitter/start-beast-splitter --status-file /run/beast-splitter/status.json &
 /usr/share/dump1090-fa/start-dump1090-fa --write-json /run/dump1090-fa --quiet
