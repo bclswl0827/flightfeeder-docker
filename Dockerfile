@@ -12,6 +12,7 @@ RUN sed -e "s/security.debian.org/mirrors.bfsu.edu.cn/g" \
  && apt-get update \
  && apt-get install --no-install-recommends -y \
                                             beast-splitter \
+                                            dump1090-fa \
                                             gpsd \
                                             ntp \
                                             piaware \
