@@ -10,8 +10,6 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
 
 ## 启动
 
-其中，LAT 和 LON 变量需要设定为自己所在地的坐标，否则航班无法正常显示。
-
 ```
 [root@BelovedZY ~]# docker run -d \
   --device /dev/ttyUSB0 \
