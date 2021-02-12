@@ -17,6 +17,7 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
   --name flightfeeder \
   --restart always \
   -p 80:80 \
+  -p 123:123/udp \
   -p 8080:8080 \
   -p 30005:30005 \
   bclswl0827/flightfeeder-docker:latest
