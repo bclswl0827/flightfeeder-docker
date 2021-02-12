@@ -1,17 +1,5 @@
 #!/bin/bash
 
-# Check environment variables
-if [ -z "$LAT" ]; then
-	echo >&2 'error: missing required LAT environment variable'
-	echo >&2 '  Did you forget to -e LAT="..." ?'
-	exit 1
-fi
-if [ -z "$LON" ]; then
-	echo >&2 'error: missing required LON environment variable'
-	echo >&2 '  Did you forget to -e LON="..." ?'
-	exit 1
-fi
-
 # Create directory for runtime
 mkdir -p /run/beast-splitter /run/dump1090-fa
 
@@ -30,6 +18,6 @@ RECEIVER_OPTIONS="--net-only --net-bo-port 0 --fix"
 EOF
 
 /usr/sbin/lighttpd -f /etc/lighttpd/lighttpd.conf
-#gpsd -b /dev/ttyUSB1 -F /var/run/gpsd.sock -n -N &
+/usr/sbin/gpsd -b /dev/ttyUSB1 -n
 /usr/share/beast-splitter/start-beast-splitter --status-file /run/beast-splitter/status.json &
 /usr/share/dump1090-fa/start-dump1090-fa --write-json /run/dump1090-fa --quiet

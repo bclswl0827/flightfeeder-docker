@@ -21,8 +21,6 @@ Mode-S Beast 这么香，谁还会去用 RTL-SDR 收 ADS-B 呢？
   -p 80:80 \
   -p 8080:8080 \
   -p 30005:30005 \
-  -e LAT="31.492837" \
-  -e LON="121.338541" \
   bclswl0827/flightfeeder-docker:latest
 ```
 

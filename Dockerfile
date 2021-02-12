@@ -11,7 +11,7 @@ RUN sed -e "s/security.debian.org/mirrors.bfsu.edu.cn/g" \
  && echo "deb http://flightaware.a1.workers.dev/adsb/flightfeeder/files/packages buster flightfeeder" >> /etc/apt/sources.list \
  && apt-get update \
  && apt-get install --no-install-recommends -y \
-                                            #gpsd \
+                                            gpsd \
                                             beast-splitter \
                                             dump1090-fa \
  && chmod +x /opt/entrypoint.sh \
