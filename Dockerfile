@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM debian:buster-slim
 
 ADD entrypoint.sh /opt/entrypoint.sh
 RUN sed -e "s/security.debian.org/mirrors.bfsu.edu.cn/g" \
