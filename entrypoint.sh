@@ -12,6 +12,7 @@ cat << EOF > /etc/fr24feed.ini
 bs="no"
 raw="no"
 mlat="yes"
+mlat-without-gps="yes"
 logmode="0"
 receiver="beast-tcp"
 host="flightfeeder:30005"
