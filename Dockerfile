@@ -5,7 +5,7 @@ RUN sed -e "s/security.debian.org/mirrors.bfsu.edu.cn/g" \
         -e "s/deb.debian.org/mirrors.bfsu.edu.cn/g" \
         -i /etc/apt/sources.list \
     && apt-get update \
-    && apt-get install --no-install-recommends -y curl upx-ucl \
+    && apt-get install --no-install-recommends -y ca-certificates curl upx-ucl \
     && DIR_TMP="$(mktemp -d)" \
     && curl -o ${DIR_TMP}/fr24feed.tgz http://repo.feed.flightradar24.com/rpi_binaries/fr24feed_1.0.25-1_armhf.tgz \
     && tar zxvf ${DIR_TMP}/fr24feed.tgz -C ${DIR_TMP} \
