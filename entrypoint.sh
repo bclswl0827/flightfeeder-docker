@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Create directory for runtime
-mkdir -p /run/beast-splitter /run/dump1090-fa /run/piaware
+mkdir -p /run/beast-splitter /run/dump1090-fa
 
 # Enable services
 cat << EOF > /etc/default/beast-splitter
@@ -32,4 +32,3 @@ EOF
 /usr/sbin/ntpd -p /var/run/ntpd.pid -g
 /usr/share/beast-splitter/start-beast-splitter --status-file /run/beast-splitter/status.json &
 /usr/share/dump1090-fa/start-dump1090-fa --write-json /run/dump1090-fa --quiet &
-/usr/bin/piaware -p /run/piaware/piaware.pid -statusfile /run/piaware/status.json -logfile /var/log/piaware.log
