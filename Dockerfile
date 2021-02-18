@@ -15,7 +15,6 @@ RUN sed -e "s/security.debian.org/mirrors.bfsu.edu.cn/g" \
                                             dump1090-fa \
                                             gpsd \
                                             ntp \
-                                            piaware \
  && chmod +x /opt/entrypoint.sh \
  && apt-get autoremove --purge -y gnupg1 \
  && rm -rf /var/lib/apt/lists/*
